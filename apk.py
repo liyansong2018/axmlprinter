@@ -520,13 +520,17 @@ class AXMLPrinter:
                     self.buff += "%s%s=\"%s\"\n" % ( self.getPrefix(
                         self.axml.getAttributePrefix(i) ), self.axml.getAttributeName(i), self._escape( self.getAttributeValue( i ) ) )
 
-                self.buff += '>\n'
+                # Modify by liyansong2018
+                # self.buff += '>\n'
+                self.buff += '>'
 
             elif _type == END_TAG :
-                self.buff += "</%s%s>\n" % ( self.getPrefix( self.axml.getPrefix() ), self.axml.getName() )
+                # self.buff += "</%s%s>\n" % ( self.getPrefix( self.axml.getPrefix() ), self.axml.getName() )
+                self.buff += "</%s%s>" % ( self.getPrefix( self.axml.getPrefix() ), self.axml.getName() )
 
             elif _type == TEXT :
-                self.buff += "%s\n" % self.axml.getText()
+                # self.buff += "%s\n" % self.axml.getText()
+                self.buff += "%s" % self.axml.getText()
 
             elif _type == END_DOCUMENT :
                 break
@@ -600,4 +604,3 @@ class AXMLPrinter:
         if id >> 24 == 1:
             return "android:"
         return ""
-
